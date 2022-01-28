@@ -22,6 +22,9 @@ struct CView: View {
                 }
                 .listRowBackground(cv.theme.mainColor)
             }
+            .onDelete { indices in
+                cvs.remove(atOffsets: indices )
+            }
         }
         .navigationTitle("List of CVs")
         .toolbar {
