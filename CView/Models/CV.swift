@@ -15,11 +15,13 @@ struct CV: Identifiable, Codable {
     var city: String
     var phone: String
     var email: String
+    var github: String
+    var linkedin: String
     var about: String
     var segments: [Segment]
     var theme: Theme
     
-    init(id: UUID = UUID(), name: String, surname: String, birthday: Date, city: String, phone: String, email: String, about: String, segments: [String], theme: Theme) {
+    init(id: UUID = UUID(), name: String, surname: String, birthday: Date, city: String, phone: String, email: String, github: String, linkedin: String, about: String, segments: [String], theme: Theme) {
         self.id = id
         self.name = name
         self.surname = surname
@@ -27,6 +29,8 @@ struct CV: Identifiable, Codable {
         self.city = city
         self.phone = phone
         self.email = email
+        self.github = github
+        self.linkedin = linkedin
         self.about = about
         self.segments = segments.map { Segment (title: $0, parts: [], theme: .oxblood) }
         self.theme = theme
@@ -55,13 +59,15 @@ extension CV {
         var city: String = ""
         var phone: String = ""
         var email: String = ""
+        var github: String = ""
+        var linkedin: String = ""
         var about: String = ""
         var segments: [Segment] = []
         var theme: Theme = .seafoam
     }
     
     var data: Data {
-        Data(name: name, surname: surname, birthday: birthday, city: city, phone: phone, email: email, about: about, segments: segments, theme: theme)
+        Data(name: name, surname: surname, birthday: birthday, city: city, phone: phone, email: email, github: github, linkedin: linkedin, about: about, segments: segments, theme: theme)
     }
     
     mutating func update(from data: Data) {
@@ -71,6 +77,8 @@ extension CV {
         city = data.city
         phone = data.phone
         email = data.email
+        github = data.github
+        linkedin = data.linkedin
         about = data.about
         segments = data.segments
         theme = data.theme
@@ -80,8 +88,8 @@ extension CV {
 extension CV {
     static let sampleData: [CV] =
     [
-        CV(name: "Cathy", surname: "Daisy", birthday: Date(), city: "New York", phone: "+987654321", email: "design@black.com", about: "About Text", segments: ["Design", "Simon", "Jonathan"], theme: .yellow),
-        CV(name: "Katie", surname: "Gray", birthday: Date(), city: "Toronto", phone: "+123456789", email: "app@dev.com", about: "App Dev", segments: ["iOS", "macOS", "Multiplatform"], theme: .orange),
-        CV(name: "Chris", surname: "Chad", birthday: Date(), city: "Los Angeles", phone: "+192837465", email: "web@dev.com", about: "Web Dev", segments: ["Full-Stack", "Front-End", "Back-End", "Frameworks"], theme: .poppy)
+        CV(name: "Cathy", surname: "Daisy", birthday: Date(), city: "New York", phone: "+987654321", email: "design@black.com", github: "", linkedin: "https://linkedin.com/cathydaisy", about: "About Text", segments: ["Design", "Simon", "Jonathan"], theme: .yellow),
+        CV(name: "Katie", surname: "Gray", birthday: Date(), city: "Toronto", phone: "+123456789", email: "app@dev.com", github: "https://github.com/katieg", linkedin: "https://linkedin.com/katieg", about: "App Dev", segments: ["iOS", "macOS", "Multiplatform"], theme: .orange),
+        CV(name: "Chris", surname: "Chad", birthday: Date(), city: "Los Angeles", phone: "+192837465", email: "web@dev.com", github: "https://github.com/codingchris", linkedin: "https://linkedin.com/chrischad", about: "Web Dev", segments: ["Full-Stack", "Front-End", "Back-End", "Frameworks"], theme: .poppy)
     ]
 }

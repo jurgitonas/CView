@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailEditView: View {
     @Binding var data: CV.Data
     @State private var newSegmentTitle = ""
+    @State private var placeholderText = "Short description"
 
     var body: some View {
         Form {
@@ -21,9 +22,20 @@ struct DetailEditView: View {
                 TextField("Phone", text: $data.phone)
                 TextField("Email", text: $data.email)
                     .autocapitalization(.none)
+                TextField("github", text: $data.github)
+                    .autocapitalization(.none)
+                TextField("linkedin", text: $data.linkedin)
+                    .autocapitalization(.none)
             }
             Section(header: Text("Overview")) {
-                TextEditor(text: $data.about)
+                ZStack {
+                    if data.about.isEmpty {
+                        TextEditor(text: $placeholderText)
+                            .disabled(true)
+                            .foregroundColor(Color(UIColor.placeholderText))
+                    }
+                    TextEditor(text: $data.about)
+                }
             }
             Section(header: Text("Contents")) {
                 ForEach(data.segments) { segment in

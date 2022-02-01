@@ -19,7 +19,7 @@ struct SegmentView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(cv.segments[cvSegments.elementsIndex].theme.mainColor)
             VStack {
-                let partsCount = cv.segments[cvSegments.elementsIndex].parts.count
+                let partsCount = cv.segments[elementsIndex].parts.count
                 SegmentHeaderView(elementsIndex: cvSegments.elementPartsIndex, elementsTotal: partsCount, theme: cv.segments[cvSegments.elementsIndex].theme)
                 RoundedRectangle(cornerRadius: 16)
                     .strokeBorder(lineWidth: 0)
@@ -28,14 +28,14 @@ struct SegmentView: View {
                             VStack {
                                 if partsCount > 0 {
                                     Text(cv.segments[cvSegments.elementsIndex].parts[cvSegments.elementPartsIndex])
-                                        .padding([.horizontal])
+                                        .padding(.horizontal)
                                 } else {
                                     Button(action: {
                                         isPresentingSegmentEditView = true
                                         data = cv.data
                                     }) {
                                         Text("Add \(cv.segments[cvSegments.elementsIndex].title)")
-                                            .padding([.horizontal])
+                                            .padding(.horizontal)
                                     }
                                 }
                             }
@@ -53,14 +53,18 @@ struct SegmentView: View {
             cvSegments.changeToElement(at: elementsIndex)
             cvSegments.changeToElementPart(at: 0)
         }
+        /*
         .onDisappear {
         }
-        .navigationTitle(cv.segments[cvSegments.elementsIndex].title)
+        */
+        .navigationTitle(cv.segments[elementsIndex].title)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: Button("Edit") {
-            isPresentingSegmentEditView = true
-            data = cv.data
-            })
+        .navigationBarItems(trailing:
+            Button("Edit") {
+                isPresentingSegmentEditView = true
+                data = cv.data
+            }
+        )
         .sheet(isPresented: $isPresentingSegmentEditView) {
             NavigationView {
                 SegmentEditView(data: $data, elementsIndex: cvSegments.elementsIndex)

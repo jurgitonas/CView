@@ -25,6 +25,22 @@ struct DetailView: View {
                 if !cv.email.isEmpty {
                     Label("\(cv.email)", systemImage: "envelope")
                 }
+                if !cv.github.isEmpty {
+                    Label {
+                        Text("\(cv.github)")
+                    } icon: {
+                        Image("GitHub")
+                            .scaleEffect(0.8)
+                    }
+                }
+                if !cv.linkedin.isEmpty {
+                    Label {
+                        Text("\(cv.linkedin)")
+                    } icon: {
+                        Image("LinkedIn")
+                            .scaleEffect(0.8)
+                    }
+                }
             }
             if !cv.about.isEmpty {
                 Section(header: Text("Overview")) {

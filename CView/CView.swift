@@ -47,7 +47,7 @@ struct CView: View {
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Add") {
-                                let newCV = CV(name: newCVData.name, surname: newCVData.surname, birthday: newCVData.birthday, city: newCVData.city, phone: newCVData.phone, email: newCVData.email, about: newCVData.about, segments: newCVData.segments.map { $0.title }, theme: newCVData.theme)
+                                let newCV = CV(name: newCVData.name, surname: newCVData.surname, birthday: newCVData.birthday, city: newCVData.city, phone: newCVData.phone, email: newCVData.email, github: newCVData.github, linkedin: newCVData.linkedin, about: newCVData.about, segments: newCVData.segments.map { $0.title }, theme: newCVData.theme)
                                 cvs.append(newCV)
                                 isPresentingNewCView = false
                                 newCVData = CV.Data()

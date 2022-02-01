@@ -34,6 +34,24 @@ struct CardView: View {
                 if !cv.email.isEmpty {
                     Label("\(cv.email)", systemImage: "envelope")
                 }
+                if !cv.github.isEmpty {
+                    Label {
+                        Text("\(cv.github)")
+                    } icon: {
+                        Image("GitHub")
+                            .scaleEffect(0.6, anchor: .leading)
+                            .padding(EdgeInsets(top: -3, leading: 1, bottom: -6, trailing: -9))
+                    }
+                }
+                if !cv.linkedin.isEmpty {
+                    Label {
+                        Text("\(cv.linkedin)")
+                    } icon: {
+                        Image("LinkedIn")
+                            .scaleEffect(0.6, anchor: .leading)
+                            .padding(EdgeInsets(top: -3, leading: 1, bottom: 0, trailing: -9))
+                    }
+                }
             }
             .font(.caption)
             if !cv.about.isEmpty {
